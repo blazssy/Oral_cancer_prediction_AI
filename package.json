@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.6.0",
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.3.0",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0",
+    "three": "^0.180.0"
+  }
+}

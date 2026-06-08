@@ -1,0 +1,124 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --primary-bg: #f0f2f5;
+  --section-bg: #ffffff;
+  --primary-text: #1a202c;
+  --secondary-text: #4a5568;
+  --accent-color: #3182ce;
+  --accent-hover: #2b6cb0;
+  --border-color: #e2e8f0;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  scroll-behavior: smooth;
+  margin: 0;
+}
+
+/* --- Hero Section with Parallax Effect --- */
+.hero-section {
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-image: url('https://images.unsplash.com/photo-1579165466949-5f2187a57a1e?q=80&w=1974&auto=format&fit=crop');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto 1.5em;
+  font-weight: 400;
+}
+
+.cta-button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 15px 35px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+}
+
+/* --- General Section Styling --- */
+section {
+  padding: 60px 20px;
+}
+.predictor-section {
+  background-color: var(--primary-bg);
+}
+.map-section {
+  background-color: var(--section-bg);
+}
+
+/* --- Main Container & Cards --- */
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.input-panel, .results-panel {
+  flex: 1;
+  min-width: 350px;
+  max-width: 500px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+  text-align: left;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+/* --- Keep the rest of your component styles (form, uploader, results, etc.) --- */
+/* You may need to slightly adjust margins or padding to fit the new layout */

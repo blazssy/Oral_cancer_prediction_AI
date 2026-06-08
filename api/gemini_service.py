@@ -1,0 +1,70 @@
+import os
+import google.generativeai as genai
+from django.conf import settings
+
+# Configure Gemini API
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyBOXoVyu7oPYnLoBGW3qukxF6KF4tVYH_M')
+
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
+    
+    # List available models to debug
+    try:
+        print("[*] Listing available Gemini models...")
+        available_models = []
+        for m in genai.list_models():
+            if 'generateContent' in m.supported_generation_methods:
+                available_models.append(m.name)
+                print(f"  - {m.name}")
+        
+        # Try to use the first available model that supports generateContent
+        if available_models:
+            model_name = available_models[0].replace('models/', '')
+            model = genai.GenerativeModel(model_name)
+            print(f"[+] Gemini API configured successfully with {model_name}")
+        else:
+            model = None
+            print("[-] No models found that support generateContent")
+    except Exception as e:
+        print(f"[X] Error listing/configuring models: {e}")
+        model = None
+else:
+    model = None
+    print("[!] GEMINI_API_KEY not found in environment variables")
+
+def generate_health_recommendation(prompt):
+    """
+    Generate health recommendations using Gemini API
+    """
+    if not model:
+        error_msg = "Please configure GEMINI_API_KEY to enable AI recommendations."
+        print(f"❌ {error_msg}")
+        return error_msg
+    
+    try:
+        print(f"🤖 Generating response with Gemini...")
+        
+        # Add safety and context to the prompt
+        enhanced_prompt = f"""You are a compassionate and knowledgeable medical AI assistant specializing in oral health and oncology.
+
+IMPORTANT GUIDELINES:
+- Provide accurate, evidence-based medical information
+- Be empathetic and supportive
+- Always recommend consulting healthcare professionals for diagnosis and treatment
+- Avoid making definitive diagnoses
+- Focus on education and prevention
+
+{prompt}
+
+Remember: This is educational information. Always advise patients to consult with qualified healthcare professionals."""
+
+        response = model.generate_content(enhanced_prompt)
+        print(f"✅ Gemini response generated successfully")
+        return response.text
+    
+    except Exception as e:
+        import traceback
+        print(f"❌ Gemini API Error: {e}")
+        print(f"❌ Full traceback:")
+        traceback.print_exc()
+        return "I apologize, but I'm having trouble generating a response. Please consult with a healthcare professional for personalized advice."
