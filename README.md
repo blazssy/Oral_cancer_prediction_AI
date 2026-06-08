@@ -6,7 +6,11 @@
 [![React](https://img.shields.io/badge/React-18.x-61DAFB)](https://reactjs.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.12-orange)](https://www.tensorflow.org/)
 
-A comprehensive deep learning solution for early detection and prediction of oral cancer using clinical images and patient data, built with modern web technologies.
+## A comprehensive deep learning solution for early detection and prediction of oral cancer using clinical images and patient data, built with modern web technologies.
+📄 Published · Journal of Applied Bioanalysis
+DOI: 10.53555/jab.v11si15.2250
+
+🌐 Live Demo:(https://oral-cancer-frontend.onrender.com)
 
 ## 📋 Table of Contents
 
